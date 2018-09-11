@@ -8,6 +8,11 @@ class StateMachine<State, Transition> {
     private val statesMap = mutableMapOf<State, () -> Unit>()
     private val transitionsMap = mutableMapOf<State, MutableMap<Transition, State>>()
 
+    var lastTransition: Transition? = null
+        private set
+    var lastState: State? = null
+        private set
+
     private var currentState: State? = null
         set(value) {
             field = value
@@ -31,6 +36,8 @@ class StateMachine<State, Transition> {
     fun executeTransition(transition: Transition) {
         val fromState = currentState ?: return
         val toState = transitionsMap[fromState]?.get(transition) ?: return
+        lastState = fromState
+        lastTransition = transition
         currentState = toState
     }
 
