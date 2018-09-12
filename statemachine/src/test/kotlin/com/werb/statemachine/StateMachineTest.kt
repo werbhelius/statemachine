@@ -7,8 +7,6 @@ import org.junit.Test
  */
 class StateMachineTest {
 
-    private val TAG = "StateMachineTest"
-
     enum class State { Solid, Liquid, Gas }
 
     enum class Transition { OnMelted, OnFroze, OnVaporized, OnCondensed }
