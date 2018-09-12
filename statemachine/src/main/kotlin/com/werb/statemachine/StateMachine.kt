@@ -23,11 +23,11 @@ class StateMachine<State, Transition> {
         currentState = state
     }
 
-    fun initState(state: State, block: () -> Unit) {
+    fun state(state: State, block: () -> Unit) {
         statesMap[state] = block
     }
 
-    fun addState(transition: Transition, fromState: State, toState: State) {
+    fun addTransition(fromState: State, transition: Transition, toState: State) {
         val bag = transitionsMap[fromState] ?: mutableMapOf()
         bag[transition] = toState
         transitionsMap[fromState] = bag
@@ -36,8 +36,8 @@ class StateMachine<State, Transition> {
     fun executeTransition(transition: Transition) {
         val fromState = currentState ?: return
         val toState = transitionsMap[fromState]?.get(transition) ?: return
-        lastState = fromState
         lastTransition = transition
+        lastState = fromState
         currentState = toState
     }
 
