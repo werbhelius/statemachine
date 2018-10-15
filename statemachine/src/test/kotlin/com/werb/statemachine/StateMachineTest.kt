@@ -16,7 +16,7 @@ class StateMachineTest {
 
             state(State.Solid) {
                 lastState?.apply {
-                    println("I have been ${State.Solid} from $this")
+                    println("I have been ${State.Solid} from $this by $lastTransition")
                 } ?: with(State.Solid) {
                     println("I have been initialState with $this")
                 }
@@ -24,7 +24,7 @@ class StateMachineTest {
 
             state(State.Liquid) {
                 lastState?.apply {
-                    println("I have been ${State.Liquid} from $this")
+                    println("I have been ${State.Liquid} from $this by $lastTransition")
                 } ?: with(State.Liquid) {
                     println("I have been initialState with $this")
                 }
@@ -32,7 +32,7 @@ class StateMachineTest {
 
             state(State.Gas) {
                 lastState?.apply {
-                    println("I have been ${State.Gas} from $this")
+                    println("I have been ${State.Gas} from $this by $lastTransition")
                 } ?: with(State.Gas) {
                     println("I have been initialState with $this")
                 }
